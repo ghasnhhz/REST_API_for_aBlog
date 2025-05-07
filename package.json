@@ -1,0 +1,26 @@
+{
+  "name": "rest_api_expressjs",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000R\u0000E\u0000S\u0000T\u0000_\u0000A\u0000P\u0000I\u0000_\u0000f\u0000o\u0000r\u0000_\u0000a\u0000B\u0000l\u0000o\u0000g\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "devStart": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghasnhhz/REST_API_for_aBlog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ghasnhhz/REST_API_for_aBlog/issues"
+  },
+  "homepage": "https://github.com/ghasnhhz/REST_API_for_aBlog#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
