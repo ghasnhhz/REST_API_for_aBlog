@@ -14,21 +14,8 @@ const posts = [
   }
 ];
 
-
-// I can omit posts after / since i am using/requiring it in restAPI.js.
 router.get('/', (req, res) => {
   res.status(200).json(posts);
-});
-
-router.post('/', (req, res) => {
-  const post = {
-    id: posts.length + 1,
-    title: req.body.title,
-    content: req.body.content
-  }
-
-  posts.push(post);
-  res.status(201).json(post);
 });
 
 router.get('/:id', (req, res) => {
@@ -36,20 +23,30 @@ router.get('/:id', (req, res) => {
 
   const post = posts.find(post => post.id === id);
   if (!post) {
-    return res.status(404).send('Could not find the post you wanted!');
+    return res.status(404).json('Could not find the post you wanted!');
   } 
   res.status(200).json(post);
 });
 
+router.post('/', (req, res) => {
+  const id = posts.length + 1;
+  const { title, content } = req.body;
+  const post = {id, title, content};
+
+  posts.push(post);
+  res.status(201).json(post);
+});
+
 router.put('/:id', (req, res) => {
+  const { title, content } = req.body;
   const post = posts.find(post => post.id === parseInt(req.params.id));
 
   if (!post) {
-    res.status(404).send('Could not find the post to update');
+    return res.status(404).json('Could not find the post to update');
   }
 
-  post.title = req.body.title;
-  post.content = req.body.content;
+  post.title = title;
+  post.content = content;
 
   res.status(200).json(post);
 });
@@ -58,10 +55,10 @@ router.delete('/:id', (req, res) => {
   const postIndex = posts.findIndex(post => post.id === parseInt(req.params.id));
 
   if (postIndex !== -1) {
-    posts.splice(postIndex, 1);
-    res.status(200).json(posts);
+    const deletedPost = posts.splice(postIndex, 1);
+    return res.status(200).json(deletedPost[0]);
   } else {
-    res.status(404).send('Could not find the post to delete');
+    return res.status(404).json('Could not find the post to delete');
   }
 });
 

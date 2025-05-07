@@ -1,10 +1,8 @@
 const express = require('express');
 const app = express();
+const postsRouter = require('./routes/posts');
 
 app.use(express.json());
-
-const postsRouter = require('./routes/users');
-
 app.use('/posts', postsRouter);
 
 app.listen(3000, () => {
